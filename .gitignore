@@ -6,6 +6,7 @@
 # 忽略上传的文件
 .idea
 *.iml
+.Log
 */target/
 out
 gen
