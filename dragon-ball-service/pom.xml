@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- 基本信息 -->
+	<description>业务逻辑层</description>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<modelVersion>4.0.0</modelVersion>
+	<name>dragon-ball-service</name>
+
+	<groupId>com.dragonball</groupId>
+	<artifactId>dragon-ball-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<!-- 继承说明：这里继承SpringBoot提供的父工程 -->
+	<parent>
+		<groupId>com.dragonball</groupId>
+		<artifactId>dragon-ball</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.dragonball</groupId>
+			<artifactId>dragon-ball-common</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dragonball</groupId>
+			<artifactId>dragon-ball-model</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dragonball</groupId>
+			<artifactId>dragon-ball-dao</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+
+	</dependencies>
+
+
+</project>

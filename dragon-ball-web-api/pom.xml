@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- 基本信息 -->
+	<description>服务调用者</description>
+	<modelVersion>4.0.0</modelVersion>
+	<name>dragon-ball-web-api</name>
+
+	<!-- 项目说明：这里作为聚合工程的父工程 -->
+	<groupId>com.dragonball</groupId>
+	<artifactId>dragon-ball-web-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<!-- 继承说明：这里继承SpringBoot提供的父工程 -->
+	<parent>
+		<groupId>com.dragonball</groupId>
+		<artifactId>dragon-ball</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<!--不需web.xml-->
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+
+			<!--&lt;!&ndash; 排除内置容器，排除内置容器导出成war包可以让外部容器运行spring-boot项目&ndash;&gt;-->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--spring boot 测试类包-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dragonball</groupId>
+			<artifactId>dragon-ball-common</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dragonball</groupId>
+			<artifactId>dragon-ball-model</artifactId>
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		</dependency>
+
+		<dependency>
+			<groupId>com.dragonball</groupId>
+			<artifactId>dragon-ball-service</artifactId>
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		</dependency>
+
+
+		<!--aop-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>com.didispace</groupId>-->
+			<!--<artifactId>spring-boot-starter-swagger</artifactId>-->
+		<!--</dependency>-->
+
+	</dependencies>
+
+	<!--docker 打包-->
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/docker</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/Dockerfile</include>
+				</includes>
+				<targetPath>${project.build.directory}/docker</targetPath>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
