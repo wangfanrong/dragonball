@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,7 +33,7 @@ public class UserController extends AbstractBaseService{
     private IUserService userService;
 
     /**
-     * 用户查询
+     * 根据条件查询
      * @param request
      * @return
      */
@@ -44,7 +43,37 @@ public class UserController extends AbstractBaseService{
         UserResponse response = new UserResponse();
         try {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("num",request.getNum());
+            if (StringUtils.isNotBlank(request.getUserName())){
+                map.put("userName",request.getUserName());
+            }
+            if (StringUtils.isNotBlank(request.getNickName())){
+                map.put("nickName",request.getNickName());
+            }
+            if (request.getSex() != null){
+                map.put("sex",request.getSex());
+            }
+            if (StringUtils.isNotBlank(request.getAccount())){
+                map.put("account",request.getAccount());
+            }
+            if (StringUtils.isNotBlank(request.getQQ())){
+                map.put("QQ",request.getQQ());
+            }
+            if (StringUtils.isNotBlank(request.getWeiXin())){
+                map.put("weiXin",request.getWeiXin());
+            }
+            if (StringUtils.isNotBlank(request.getEmail())){
+                map.put("email",request.getEmail());
+            }
+            if (StringUtils.isNotBlank(request.getPhoneNumber())){
+                map.put("phoneNumber",request.getPhoneNumber());
+            }
+            if (request.getIsEnable() != null){
+                map.put("isEnable",request.getIsEnable());
+            }
+            if (request.getMemberType() != null){
+                map.put("memberType",request.getMemberType());
+            }
+
 //            List<UserEO> userEOList = userService.selectByMap(map);
             int pageNum = request.getPageNum() != null ? request.getPageNum() : 0;
             int pageSize = request.getPageSize() != null ? request.getPageSize() : 0;
@@ -68,11 +97,31 @@ public class UserController extends AbstractBaseService{
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "addUser", method = RequestMethod.POST)
-    public IServiceResponse addUser(@RequestBody UserRequest request){
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public IServiceResponse register(@RequestBody UserRequest request){
         BaseResponse<UserResponse> response = new BaseResponse<UserResponse>();
         try {
-            userService.save(request.getNum(),request.getUserName());
+            UserEO userEO = new UserEO();
+            userEO.setUserName(request.getUserName());
+            userEO.setNickName(request.getNickName());
+            userEO.setSex(request.getSex());
+            userEO.setAccount(request.getAccount());
+            userEO.setPassword(request.getPassword());
+            userEO.setEmail(request.getEmail());
+            userEO.setPhoneNumber(request.getPhoneNumber());
+            if (StringUtils.isNotBlank(request.getHeadPhoto())){
+                userEO.setHeadPhoto(request.getHeadPhoto());
+            }
+            if (StringUtils.isNotBlank(request.getSignature())){
+                userEO.setSignature(request.getSignature());
+            }
+            if (StringUtils.isNotBlank(request.getQQ())){
+                userEO.setQQ(request.getQQ());
+            }
+            if (StringUtils.isNotBlank(request.getWeiXin())){
+                userEO.setWeiXin(request.getWeiXin());
+            }
+            userService.register(userEO);
             this.success(response);
         }catch (BusinessException e){
             // 捕获未知异常
@@ -83,21 +132,42 @@ public class UserController extends AbstractBaseService{
     }
 
     /**
-     * 用户修改
+     * 用户编辑
      * @param request
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "updateUser", method = RequestMethod.POST)
-    public IServiceResponse updateUser(@RequestBody UserRequest request){
+    @RequestMapping(value = "editor", method = RequestMethod.POST)
+    public IServiceResponse editor(@RequestBody UserRequest request){
         BaseResponse<UserResponse> response = new BaseResponse<UserResponse>();
         try {
-            userService.update(request.getId(), request.getNum(),request.getUserName());
+            UserEO userEO = new UserEO();
+            userEO.setId(request.getId());
+            userEO.setUserName(request.getUserName());
+            userEO.setNickName(request.getNickName());
+            userEO.setSex(request.getSex());
+            userEO.setAccount(request.getAccount());
+            userEO.setPassword(request.getPassword());
+            userEO.setEmail(request.getEmail());
+            userEO.setPhoneNumber(request.getPhoneNumber());
+            if (StringUtils.isNotBlank(request.getHeadPhoto())){
+                userEO.setHeadPhoto(request.getHeadPhoto());
+            }
+            if (StringUtils.isNotBlank(request.getSignature())){
+                userEO.setSignature(request.getSignature());
+            }
+            if (StringUtils.isNotBlank(request.getQQ())){
+                userEO.setQQ(request.getQQ());
+            }
+            if (StringUtils.isNotBlank(request.getWeiXin())){
+                userEO.setWeiXin(request.getWeiXin());
+            }
+            userService.editor(userEO);
             this.success(response);
         }catch (BusinessException e){
             // 捕获未知异常
             this.error(response, e.getMessage());
-            LogUtils.logError("修改用户发生异常:{}", e);
+            LogUtils.logError("编辑用户发生异常:{}", e);
         }
         return response;
     }

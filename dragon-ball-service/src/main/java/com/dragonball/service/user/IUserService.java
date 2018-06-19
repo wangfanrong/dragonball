@@ -13,9 +13,9 @@ public interface IUserService {
 
     UserEO getById(Long id);
 
-    void save(int num,String userName);
+    void register(UserEO userEO);
 
-    void update(Long id, int num,String userName);
+    void editor(UserEO userEO);
 
     int delete(Long id);
 

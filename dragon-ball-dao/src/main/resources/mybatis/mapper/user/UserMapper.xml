@@ -6,8 +6,19 @@
     <resultMap id="BaseResultMap"
                type="com.dragonball.model.user.entity.UserEO">
         <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="num" property="num" jdbcType="BIGINT" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="INTEGER" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="head_photo" property="headPhoto" jdbcType="VARCHAR" />
+        <result column="signature" property="signature" jdbcType="VARCHAR" />
+        <result column="qq" property="QQ" jdbcType="VARCHAR" />
+        <result column="wei_xin" property="weiXin" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+        <result column="is_enable" property="isEnable" jdbcType="BIT" />
+        <result column="member_type" property="memberType" jdbcType="BIGINT" />
     </resultMap>
 
     <!-- 根据id查询 -->
@@ -21,11 +32,44 @@
     <sql id="selectSql">
         <where>
             <trim prefixOverrides="AND">
-                <if test="num != null">
-                    AND num = #{num}
-                </if>
                 <if test="userName != null and userName != ''">
                     AND user_name = #{userName}
+                </if>
+                <if test="nickName != null and nickName != ''">
+                    AND nick_name = #{nickName}
+                </if>
+                <if test="sex != null">
+                    AND sex = #{sex}
+                </if>
+                <if test="account != null and account != ''">
+                    AND account = #{account}
+                </if>
+                <if test="password != null and password != ''">
+                    AND password = #{password}
+                </if>
+                <if test="headPhoto != null and headPhoto != ''">
+                    AND head_photo = #{headPhoto}
+                </if>
+                <if test="signature != null and signature != ''">
+                    AND signature = #{signature}
+                </if>
+                <if test="QQ != null and QQ != ''">
+                    AND qq = #{QQ}
+                </if>
+                <if test="weiXin != null and weiXin != ''">
+                    AND wei_xin = #{weiXin}
+                </if>
+                <if test="email != null and email != ''">
+                    AND email = #{email}
+                </if>
+                <if test="phoneNumber != null and phoneNumber != ''">
+                    AND phone_number = #{phoneNumber}
+                </if>
+                <if test="isEnable != null">
+                    AND is_enable = #{phoneNumber}
+                </if>
+                <if test="memberType != null ">
+                    AND member_type = #{memberType}
                 </if>
             </trim>
         </where>
@@ -35,19 +79,85 @@
     <insert id="insert" parameterType="com.dragonball.model.user.entity.UserEO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="num != null">
-                num,
-            </if>
             <if test="userName != null and userName != ''">
-                user_name
+                user_name,
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nick_name,
+            </if>
+            <if test="sex != null ">
+                sex,
+            </if>
+            <if test="account != null and account != ''">
+                account,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="headPhoto != null and headPhoto != ''">
+                head_photo,
+            </if>
+            <if test="signature != null and signature != ''">
+                signature,
+            </if>
+            <if test="QQ != null and QQ != ''">
+                qq,
+            </if>
+            <if test="weiXin != null and weiXin != ''">
+                wei_xin,
+            </if>
+            <if test="email != null and email != ''">
+                email,
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number,
+            </if>
+            <if test="isEnable != null">
+                is_enable,
+            </if>
+            <if test="memberType != null">
+                member_type
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="num != null ">
-                #{num},
-            </if>
             <if test="userName != null and userName != ''">
-                #{userName}
+                #{userName},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                #{nickName},
+            </if>
+            <if test="sex != null ">
+                #{sex},
+            </if>
+            <if test="account != null and account != ''">
+                #{account},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="headPhoto != null and headPhoto != ''">
+                #{headPhoto},
+            </if>
+            <if test="signature != null and signature != ''">
+                #{signature},
+            </if>
+            <if test="QQ != null and QQ != ''">
+                #{QQ},
+            </if>
+            <if test="weiXin != null and weiXin != ''">
+                #{weiXin},
+            </if>
+            <if test="email != null and email != ''">
+                #{email},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                #{phoneNumber},
+            </if>
+            <if test="isEnable != null ">
+                #{isEnable},
+            </if>
+            <if test="memberType != null ">
+                #{memberType}
             </if>
         </trim>
     </insert>
@@ -77,12 +187,49 @@
 
     <!-- 更新记录 -->
     <update id="update" parameterType="com.dragonball.model.user.entity.UserEO">
-    update t_user
-    <set>
-        <if test="num != null">`num` = #{num}, </if>
-        <if test="userName != null">`user_name` = #{userName} </if>
-    </set>
-    where id = #{id}
+        update t_user
+        <set>
+            <if test="userName != null and userName != ''">
+                `user_name` = #{userName},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                `nick_name` = #{nickName},
+            </if>
+            <if test="sex != null ">
+                `sex` = #{sex},
+            </if>
+            <if test="account != null and account != ''">
+                `account` = #{account},
+            </if>
+            <if test="password != null and password != ''">
+                `password` = #{password},
+            </if>
+            <if test="headPhoto != null and headPhoto != ''">
+                `head_photo` = #{headPhoto},
+            </if>
+            <if test="signature != null and signature != ''">
+                `signature` = #{signature},
+            </if>
+            <if test="QQ != null and QQ != ''">
+                `qq` = #{QQ},
+            </if>
+            <if test="weiXin != null and weiXin != ''">
+                `wei_xin` = #{weiXin},
+            </if>
+            <if test="email != null and email != ''">
+                `email` = #{email},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                `phone_number` = #{phoneNumber},
+            </if>
+            <if test="isEnable != null">
+                `is_enable` = #{isEnable},
+            </if>
+            <if test="memberType != null">
+                `member_type` = #{memberType}
+            </if>
+        </set>
+        where id = #{id}
     </update>
 
     <!-- 更新记录 -->
@@ -91,11 +238,44 @@
                  separator=";">
             update t_user
             <set>
-                <if test="item.num != null">
-                    num = #{item.num},
-                </if>
                 <if test="item.userName != null and item.userName != ''">
-                    user_name = #{item.userName}
+                    user_name = #{item.userName},
+                </if>
+                <if test="item.nickName != null and item.nickName != ''">
+                    nick_name = #{item.nickName},
+                </if>
+                <if test="item.sex != null">
+                    sex = #{item.sex},
+                </if>
+                <if test="item.account != null and item.account != ''">
+                    account = #{item.account},
+                </if>
+                <if test="item.password != null and item.password != ''">
+                    password = #{item.password},
+                </if>
+                <if test="item.headPhoto != null and item.headPhoto != ''">
+                    head_photo = #{item.headPhoto},
+                </if>
+                <if test="item.signature != null and item.signature != ''">
+                    signature = #{item.signature},
+                </if>
+                <if test="item.QQ != null and item.QQ != ''">
+                    qq = #{item.QQ},
+                </if>
+                <if test="item.weiXin != null and item.weiXin != ''">
+                    wei_xin = #{item.weiXin},
+                </if>
+                <if test="item.email != null and item.email != ''">
+                    email = #{item.email},
+                </if>
+                <if test="item.phoneNumber != null and item.phoneNumber != ''">
+                    phone_number = #{item.phoneNumber},
+                </if>
+                <if test="item.isEnable != null">
+                    is_enable = #{item.isEnable},
+                </if>
+                <if test="item.memberType != null">
+                    member_type = #{item.memberType}
                 </if>
             </set>
             where id = #{item.id}

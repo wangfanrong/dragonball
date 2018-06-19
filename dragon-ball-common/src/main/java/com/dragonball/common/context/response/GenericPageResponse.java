@@ -60,7 +60,7 @@ public class GenericPageResponse {
         this.dataSizeOfCurrentPage = dataSizeOfCurrentPage;
     }
 
-    public boolean isHasNextPage() {
+    public boolean getIsHasNextPage() {
         return isHasNextPage;
     }
 
@@ -68,7 +68,7 @@ public class GenericPageResponse {
         this.isHasNextPage = isHasNextPage;
     }
 
-    public boolean isHasPreviousPage() {
+    public boolean getIsHasPreviousPage() {
         return isHasPreviousPage;
     }
 

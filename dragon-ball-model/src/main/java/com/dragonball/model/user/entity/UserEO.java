@@ -11,17 +11,59 @@ import java.io.Serializable;
 public class UserEO extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    private int num;
-
+    /**
+     * 真实姓名
+     */
     private String userName;
+    /**
+     * 昵称
+     */
+    private String nickName;
+    /**
+     * 性别
+     */
+    private Integer sex;
+    /**
+     * 用户账号
+     */
+    private String account;
+    /**
+     * 账号密码
+     */
+    private String password;
+    /**
+     * 头像
+     */
+    private String headPhoto;
+    /**
+     * 个性签名
+     */
+    private String signature;
+    /**
+     * QQ
+     */
+    private String QQ;
+    /**
+     * 微信
+     */
+    private String weiXin;
+    /**
+     * 邮箱
+     */
+    private String email;
+    /**
+     * 手机号码
+     */
+    private String phoneNumber;
+    /**
+     * 是否启用
+     */
+    private Boolean isEnable;
+    /**
+     * 成员等级
+     */
+    private Integer memberType;
 
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
 
     public String getUserName() {
         return userName;
@@ -31,25 +73,99 @@ public class UserEO extends BaseEntity {
         this.userName = userName;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        if (!super.equals(o)) return false;
-//
-//        UserEO userEO = (UserEO) o;
-//
-//        if (num != userEO.num) return false;
-//        return userName != null ? userName.equals(userEO.userName) : userEO.userName == null;
-//
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = super.hashCode();
-//        result = 31 * result + num;
-//        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-//        return result;
-//    }
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getHeadPhoto() {
+        return headPhoto;
+    }
+
+    public void setHeadPhoto(String headPhoto) {
+        this.headPhoto = headPhoto;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getQQ() {
+        return QQ;
+    }
+
+    public void setQQ(String QQ) {
+        this.QQ = QQ;
+    }
+
+    public String getWeiXin() {
+        return weiXin;
+    }
+
+    public void setWeiXin(String weiXin) {
+        this.weiXin = weiXin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Boolean getIsEnable() {
+        return isEnable;
+    }
+
+    public void setIsEnable(Boolean isEnable) {
+        this.isEnable = isEnable;
+    }
+
+    public Integer getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(Integer memberType) {
+        this.memberType = memberType;
+    }
 }

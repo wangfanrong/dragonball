@@ -1,14 +1,13 @@
 package com.dragonball.service.user.impl;
 
-import com.dragonball.common.exception.BaseException;
 import com.dragonball.common.exception.BusinessException;
 import com.dragonball.common.model.GenericPage;
 import com.dragonball.dao.user.db.UserDBDAO;
 import com.dragonball.model.user.entity.UserEO;
+import com.dragonball.model.user.enums.MemberType;
 import com.dragonball.service.user.IUserService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,51 +32,64 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public UserEO getById(Long id) {
-        UserEO userEO = userDBDAO.getById(id);
-        return userEO;
+        if (id == null){
+            throw new BusinessException("id为空");
+        }
+        return userDBDAO.getById(id);
     }
 
     /**
-     * 添加
-     * @param num
-     * @param userName
+     * 注册新用户
+     * @param userEO 用户信息
      */
     @Override
-    public void save(int num,String userName) {
-        if (StringUtils.isBlank(userName)){
-            throw new BaseException("用户名不能为空");
+    public void register(UserEO userEO) {
+
+        if (StringUtils.isBlank(userEO.getUserName())){
+            throw new BusinessException("真实姓名为空");
         }
-        UserEO userEO = new UserEO();
-        userEO.setNum(num);
-        userEO.setUserName(userName);
+        if (StringUtils.isBlank(userEO.getNickName())){
+            throw new BusinessException("昵称为空");
+        }
+        if (userEO.getSex() == null){
+            throw new BusinessException("性别为空");
+        }
+        if (StringUtils.isBlank(userEO.getAccount())){
+            throw new BusinessException("用户账号为空");
+        }
+        if (StringUtils.isBlank(userEO.getPassword())){
+            throw new BusinessException("用户密码为空");
+        }
+        if (StringUtils.isBlank(userEO.getEmail())){
+            throw new BusinessException("邮箱为空");
+        }
+        if (StringUtils.isBlank(userEO.getPhoneNumber())){
+            throw new BusinessException("手机号码为空");
+        }
+        userEO.setIsEnable(Boolean.TRUE);
+        userEO.setMemberType(MemberType.REGULAR_MEMBER.getCode());
         userDBDAO.insert(userEO);
     }
 
     /**
-     * 修改
-     * @param id
-     * @param num
-     * @param userName
+     * 编辑用户信息
+     * @param userEO 用户信息
      */
     @Override
-    public void update(Long id, int num,String userName) {
-        if (id == null){
-            throw new BusinessException("id为空");
-        }
-        if (StringUtils.isBlank(userName)){
-            throw new BaseException("用户名不能为空");
-        }
-        UserEO userEO = userDBDAO.getById(id);
+    public void editor(UserEO userEO){
+
         if (userEO == null){
-            return ;
+            throw new BusinessException("用户信息为空");
         }
-        userEO.setNum(num);
-        userEO.setUserName(userName);
+        UserEO newUser =  userDBDAO.getById(userEO.getId());
+        if (newUser == null){
+            throw new BusinessException("未找到该用户信息");
+        }
         userDBDAO.update(userEO);
     }
 
     /**
-     * 根据主键删除
+     * 删除用户
      * @param id
      * @return
      */
@@ -105,7 +117,11 @@ public class UserServiceImpl implements IUserService {
          return list;
     }
 
-
+    /**
+     * 根据条件查询
+     * @param map
+     * @return
+     */
     @Override
     public List<UserEO> selectByMap(Map<String, Object> map) {
         return userDBDAO.selectByMap(map);
