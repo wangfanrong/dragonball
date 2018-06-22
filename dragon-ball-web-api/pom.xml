@@ -50,6 +50,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>com.dragonball</groupId>
 			<artifactId>dragon-ball-common</artifactId>
 		</dependency>
@@ -86,6 +91,16 @@
 			<!--<groupId>com.didispace</groupId>-->
 			<!--<artifactId>spring-boot-starter-swagger</artifactId>-->
 		<!--</dependency>-->
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+		</dependency>
 
 	</dependencies>
 

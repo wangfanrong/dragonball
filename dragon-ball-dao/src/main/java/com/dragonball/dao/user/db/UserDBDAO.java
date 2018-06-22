@@ -30,4 +30,8 @@ public interface UserDBDAO {
     int countByMap(Map<String, Object> queryParam);
 
     GenericPage<UserEO> genericPageByMap(Map<String, Object> queryParam);
+
+    UserEO getUserByAccount(String account);
+
+    UserEO getUserByPhone(String phoneNumber);
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>第一个登录页</title>
+</head>
+
+<body>
+<h1>登录页</h1>
+<!--<div>-->
+    <!--<span>用户名:</span><input type="text" id="account" name="account" ></input>-->
+
+<!--</div>-->
+<!--<form action="/login/toLogin" method="post">-->
+    <!--&lt;!&ndash; 1、参数必须被命名为 userName，不能为 username，保持和实体中的属性一致 &ndash;&gt;-->
+    <!--用户名:<input type="text" id="account" name="account" placeholder="account"></input><br/>-->
+    <!--&lt;!&ndash; 2、同理密码参数必须被命名为 password &ndash;&gt;-->
+    <!--密码:<input type="password" id="password" name="password" placeholder="password"></input><br/>-->
+    <!--<input type="submit" value="登录"></input>-->
+<!--</form>-->
+
+<!--<form action="/login/toLogin" method="post" enctype="application/x-www-form-urlencoded">-->
+    <!--用户名: <input type="text" name="account" />-->
+    <!--密码: <input type="password" name="password" />-->
+    <!--<input type="submit" value="登录" />-->
+<!--</form>-->
+<div>
+    <span>账号：<input type="text" id="account" /></span><br/>
+     <span>密码：<input type="password" id="password"/></span><br/>
+    <input type="button" value="登录" id="bt"/><br/>
+</div>
+
+<script type="text/javascript" src="http://images001.5173cdn.com/view/js/common/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+
+    $("#bt").on("click", function () {
+        login();
+    });
+
+
+    function login() {
+        var data = {
+            "account": $("#account").val(),
+            "password": $("#password").val()
+        };
+        $.ajax({
+            async: true,
+            type: 'post',
+            contentType: 'application/json; charset=UTF-8',
+            dataType:"json",
+            url: "/login/toLogin",
+            data: JSON.stringify(data),
+            success: function (result) {
+                if (result.success == 200){
+                    alert(result.info);
+                    parent.location.href = '/index';
+                }else {
+                    alert(result.info);
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+
+</html>

@@ -321,4 +321,18 @@
         </if>
     </select>
 
+    <!-- 根据账号查询 -->
+    <select id="getUserByAccount" parameterType="String" resultMap="BaseResultMap"
+            resultType="com.dragonball.model.user.entity.UserEO">
+        SELECT * FROM t_user WHERE account =
+        #{account}
+    </select>
+
+    <!-- 根据手机号查询 -->
+    <select id="getUserByPhone" parameterType="String" resultMap="BaseResultMap"
+            resultType="com.dragonball.model.user.entity.UserEO">
+        SELECT * FROM t_user WHERE phone_number =
+        #{phoneNumber}
+    </select>
+
 </mapper>
