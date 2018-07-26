@@ -31,6 +31,10 @@
     <input type="button" value="登录" id="bt"/><br/>
 </div>
 
+<div class="layui-layer layui-layer-hui" id="error_message" style="display: none">
+    <div class="layui-layer-content" id="errmessage"></div>
+</div>
+
 <script type="text/javascript" src="http://images001.5173cdn.com/view/js/common/lib/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 
@@ -56,7 +60,9 @@
                     alert(result.info);
                     parent.location.href = '/index';
                 }else {
-                    alert(result.info);
+//                    alert(result.info);
+                    $('#errmessage').html(result.info);
+                    $('#error_message').show().delay(2000).fadeOut("slow");
                 }
             }
         })
@@ -64,6 +70,67 @@
 
 
 </script>
+
+<style type="text/css">
+
+    .layui-layer{
+        top: 150px;
+        left: 50%;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        -webkit-background-clip: content;
+        box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+        border-radius: 2px;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-duration: .3s;
+        animation-duration: .3s;
+        position: fixed;
+        _position: absolute;
+        pointer-events: auto;
+        -webkit-animation-name: bounceIn;
+        animation-name: bounceIn;
+        min-width: 100px;
+        background-color: #000;
+        filter: alpha(opacity=60);
+        background-color: rgba(0,0,0,.6);
+        color: #fff;
+        border: none
+    }
+
+    @keyframes bounceIn {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(.5);
+            -ms-transform: scale(.5);
+            transform: scale(.5)
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1)
+        }
+    }
+
+    .layui-layer-hui {
+        min-width: 100px;
+        background-color: #000;
+        filter: alpha(opacity=60);
+        background-color: rgba(0,0,0,.6);
+        color: #fff;
+        border: none
+    }
+
+    .layui-layer-hui .layui-layer-content {
+        padding: 12px 25px;
+        text-align: center
+    }
+
+</style>
+
 </body>
 
 </html>

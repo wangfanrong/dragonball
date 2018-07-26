@@ -81,8 +81,8 @@ public class DragonBallWebApiApplicationTests {
 		return newResult;
 	}
 
-	@Test
-	public void testCollection(){
+//	@Test
+//	public void testCollection(){
 //		Collection collection = new Collection() {
 //			public int size() {
 //				return 0;
@@ -136,43 +136,43 @@ public class DragonBallWebApiApplicationTests {
 //
 //			}
 //		}
-		ArrayList<String> a = new ArrayList<String>();
-		ArrayList<String> b = new ArrayList<String>();
-		a.add("a");
-		a.add("b");
-		a.add("c");
-		a.add("d");
-		b.add("a");
-		b.add("b");
-		b.add("c");
-		Boolean isTrue = a.containsAll(b);
-		System.out.println("*****"+isTrue);
-		Boolean isHave = a.contains("e");
-		System.out.println("**********"+isHave);
-		UserEO userEO1 = new UserEO();
-		userEO1.setUserName("董建威");
-		int hashCode1 = userEO1.hashCode();
-
-		UserEO userEO2 = new UserEO();
-		userEO2.setUserName("方聪鹏");
-		int hashCode2 = userEO2.hashCode();
-
-		System.out.println(hashCode1+" and "+hashCode2);
-
-	}
-
-	@Test
-	public void dragonBallTest(){
-		System.out.println("OK");
-	}
-
-	@Test
-	public void dragonBallAdd(){
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("num",8);
-		List<UserEO> list = userService.selectByMap(map);
-
-		System.out.println("OK");
-	}
+//		ArrayList<String> a = new ArrayList<String>();
+//		ArrayList<String> b = new ArrayList<String>();
+//		a.add("a");
+//		a.add("b");
+//		a.add("c");
+//		a.add("d");
+//		b.add("a");
+//		b.add("b");
+//		b.add("c");
+//		Boolean isTrue = a.containsAll(b);
+//		System.out.println("*****"+isTrue);
+//		Boolean isHave = a.contains("e");
+//		System.out.println("**********"+isHave);
+//		UserEO userEO1 = new UserEO();
+//		userEO1.setUserName("董建威");
+//		int hashCode1 = userEO1.hashCode();
+//
+//		UserEO userEO2 = new UserEO();
+//		userEO2.setUserName("方聪鹏");
+//		int hashCode2 = userEO2.hashCode();
+//
+//		System.out.println(hashCode1+" and "+hashCode2);
+//
+//	}
+//
+//	@Test
+//	public void dragonBallTest(){
+//		System.out.println("OK");
+//	}
+//
+//	@Test
+//	public void dragonBallAdd(){
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("num",8);
+//		List<UserEO> list = userService.selectByMap(map);
+//
+//		System.out.println("OK");
+//	}
 
 }
